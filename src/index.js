@@ -6,6 +6,8 @@ import Header from "./components/Header";
 import Home from "./pages/Home"; // Create Home page component
 import Login from "./pages/Login"; // Create Login page component
 import Signup from "./pages/Signup"; // Create Signup page component
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./index.css"; // If you have custom styles
 
 ReactDOM.render(
   <Router>

@@ -1,36 +1,39 @@
 import React, { useEffect, useState } from "react";
-import { fetchProperties } from "../api/propertyAPI";
+import axios from "axios";
+import { Card, Button, Row, Col, Container } from "react-bootstrap";
 
 const PropertyList = () => {
   const [properties, setProperties] = useState([]);
 
   useEffect(() => {
-    const getProperties = async () => {
-      const data = await fetchProperties();
-      setProperties(data);
+    const fetchProperties = async () => {
+      const response = await axios.get("http://localhost:8000/properties/");
+      setProperties(response.data);
     };
-    getProperties();
+    fetchProperties();
   }, []);
 
   return (
-    <div>
-      <h1>Property Listings</h1>
-      <ul>
+    <Container className="mt-4">
+      <Row>
         {properties.map((property) => (
-          <li key={property.id}>
-            <h2>{property.title}</h2>
-            <p>{property.description}</p>
-            <p>Price: ${property.price}</p>
-            <p>Location: {property.location}</p>
-            <img
-              src={property.image_url}
-              alt={property.title}
-              style={{ width: "300px", height: "200px" }}
-            />
-          </li>
+          <Col md={4} key={property.id} className="mb-4">
+            <Card>
+              <Card.Img
+                variant="top"
+                src={property.image}
+                alt={property.title}
+              />
+              <Card.Body>
+                <Card.Title>{property.title}</Card.Title>
+                <Card.Text>{property.description}</Card.Text>
+                <Button variant="primary">View Details</Button>
+              </Card.Body>
+            </Card>
+          </Col>
         ))}
-      </ul>
-    </div>
+      </Row>
+    </Container>
   );
 };
 

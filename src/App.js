@@ -5,6 +5,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (

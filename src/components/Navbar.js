@@ -1,29 +1,44 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { Navbar, Nav, Container } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
-function AppNavbar() {
+const Navbar = () => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("/api/categories")
+      .then((response) => {
+        setCategories(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching categories:", error);
+      });
+  }, []);
+
   return (
-    <Navbar bg="light" expand="lg">
-      <Container>
-        <Navbar.Brand href="/">Real Estate</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <NavLink className="nav-link" to="/">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <Link className="navbar-brand" to="/">
+        Real Estate
+      </Link>
+      <div className="collapse navbar-collapse" id="navbarNav">
+        <ul className="navbar-nav ml-auto">
+          <li className="nav-item">
+            <Link className="nav-link" to="/">
               Home
-            </NavLink>
-            <NavLink className="nav-link" to="/login">
-              Login
-            </NavLink>
-            <NavLink className="nav-link" to="/register">
-              Register
-            </NavLink>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+            </Link>
+          </li>
+          {categories.map((category) => (
+            <li className="nav-item" key={category.id}>
+              <Link className="nav-link" to={`/category/${category.id}`}>
+                {category.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
   );
-}
+};
 
-export default AppNavbar;
+export default Navbar;

@@ -4,64 +4,83 @@
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 20px;
+  gap: 20px; /* Better spacing between cards */
 }
 
 /* Individual category card styling */
 .category-card {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 300px;
+  background-color: #ffffff;
+  border-radius: 12px; /* Slightly more rounded corners */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  width: 280px; /* Adjusted width for better responsiveness */
   margin: 20px;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden; /* Prevents content from overflowing */
 }
 
 .category-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-8px); /* Subtle hover lift */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); /* More pronounced shadow on hover */
 }
 
 /* Category image styling */
 .category-card img {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
   width: 100%;
-  height: 200px;
+  height: 180px; /* Slightly smaller height for better layout balance */
   object-fit: cover;
 }
 
 /* Category title styling */
 .category-card h3 {
-  font-size: 1.5rem;
+  font-size: 1.6rem; /* Slightly larger title for emphasis */
   margin: 15px 0;
-  color: #333;
-  font-weight: bold;
+  color: #333333;
+  font-weight: 600; /* Slightly lighter font-weight for cleaner look */
+  transition: color 0.3s ease; /* Smooth color transition */
 }
 
 /* Hover effect on category title */
 .category-card:hover h3 {
-  color: #007bff;
+  color: #0056b3; /* Darker blue for a more professional look */
 }
 
 /* Category description or action buttons styling */
 .category-card p {
   font-size: 1rem;
-  color: #666;
-  padding: 0 10px 20px;
+  color: #555555; /* Darker text for better contrast */
+  padding: 0 15px 20px; /* Slightly more padding for better spacing */
+  line-height: 1.5; /* Better readability */
 }
 
+/* Button styling */
 .category-card button {
-  background-color: #007bff;
-  color: white;
+  background-color: #0056b3; /* Consistent color scheme */
+  color: #ffffff;
   border: none;
-  padding: 10px 20px;
+  padding: 10px 25px; /* Larger padding for a more clickable feel */
   border-radius: 5px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-size: 1rem; /* Slightly larger button text */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Added hover transition for transform */
 }
 
 .category-card button:hover {
-  background-color: #0056b3;
+  background-color: #003f8a; /* Darker hover effect for better distinction */
+  transform: translateY(-2px); /* Slight hover lift for buttons */
+}
+
+/* Media queries for responsiveness */
+@media screen and (max-width: 768px) {
+  .categories-container {
+    justify-content: center; /* Center cards on smaller screens */
+  }
+
+  .category-card {
+    width: 90%; /* Make cards full width on small screens */
+    margin: 10px;
+  }
 }
